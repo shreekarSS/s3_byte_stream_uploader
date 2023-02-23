@@ -33,14 +33,9 @@ You can test the utility by deploying a MinIO locally. MinIO is a high-performan
 
 Download the MinIO server from the official website: https://min.io/download.
 
-Create largefile:
-`dd if=/dev/zero of=largefile bs=1M count=1000
-`
-![Screenshot from 2023-02-23 12-28-55.png](..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202023-02-23%2012-28-55.png)
-Upload using following cli, also calculate md5sum
-![Screenshot from 2023-02-23 12-30-44.png](..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202023-02-23%2012-30-44.png)
+Create largefile and upload using following cli, also calculate md5sum
+![screenshots/dd.png](screenshots%2Fdd.png)
 
 Once upload is finished, check the object in the bucket from minio console
-![Screenshot from 2023-02-23 12-33-43.png](..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202023-02-23%2012-33-43.png)
-
-Verify the md5sum of uploaded file by downloading it or checking md5sum in object info tab 
+![screenshots/upload_cli_md5sum.png](screenshots%2Fupload_cli_md5sum.png)
+Verify the md5sum of uploaded file by downloading it or checking md5sum in object info tab ![console.png](screenshots%2Fconsole.png)
