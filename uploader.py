@@ -6,6 +6,29 @@ import io
 
 
 def s3_byte_stream_uploader(endpoint_url, access_key, secret_key, bucket_name, object_key):
+    """
+    Uploads a byte stream to an S3 bucket.
+
+    This function reads binary data from standard input and uploads it to an S3 bucket using the provided endpoint URL,
+    access key, and secret key. The bucket name and object key are also required.
+
+    The data is read into an in-memory buffer and its MD5 hash is calculated. The buffer is then uploaded to S3
+    as an object with the specified bucket name and object key, and the MD5 hash is stored as a custom metadata field.
+
+    Args:
+        endpoint_url (str): The URL of the S3 endpoint to use for the upload.
+        access_key (str): The access key to use to authenticate with the S3 endpoint.
+        secret_key (str): The secret key to use to authenticate with the S3 endpoint.
+        bucket_name (str): The name of the S3 bucket to upload the data to.
+        object_key (str): The key of the S3 object to create or update with the uploaded data.
+
+    Returns:
+        None
+
+    Raises:
+        Any exceptions that may be raised by the boto3 library during the upload process.
+
+    """
     # Create an S3 client
     try:
         s3 = boto3.client('s3', endpoint_url=endpoint_url, aws_access_key_id=access_key,
@@ -19,7 +42,7 @@ def s3_byte_stream_uploader(endpoint_url, access_key, secret_key, bucket_name, o
     md5_hash = hashlib.md5()
     while True:
         try:
-            data = sys.stdin.buffer.read(8192)
+            data = sys.stdin.buffer.read()
         except KeyboardInterrupt:
             print("Upload interrupted by user")
             return
