@@ -19,7 +19,7 @@ def s3_byte_stream_uploader(endpoint_url, access_key, secret_key, bucket_name, o
     md5_hash = hashlib.md5()
     while True:
         try:
-            data = sys.stdin.buffer.read(8192)
+            data = sys.stdin.buffer.read()
         except KeyboardInterrupt:
             print("Upload interrupted by user")
             return
